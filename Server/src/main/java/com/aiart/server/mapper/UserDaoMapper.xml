@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aiart.server.dao.UserDao">
+    <!-- 字段-属性映射-->
+    <resultMap id="BaseResultMap" type="com.aiart.server.entity.UserEntity">
+        <id column="userId" property="userId" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="nickname" property="nickname" />
+        <result column="gender" property="gender" />
+        <result column="model_library" property="modelLibrary" />
+    </resultMap>
+
+    <!-- 插入用户 -->
+    <insert id="insertUser" useGeneratedKeys = "true"  keyProperty = "userId" parameterType="com.aiart.server.entity.UserEntity">
+        INSERT INTO user (account, password, nickname, gender, model_library)
+        VALUES (#{account}, #{password}, #{nickname}, #{gender}, #{modelLibrary})
+    </insert>
+
+    <!-- 根据用户ID查询用户 -->
+    <select id="getUserById" resultType="com.aiart.server.entity.UserEntity" parameterType="java.lang.Long">
+        SELECT * FROM user WHERE userId = #{userId}
+    </select>
+
+    <!-- 更新用户信息 -->
+    <update id="updateUser" parameterType="com.aiart.server.entity.UserEntity">
+        UPDATE user
+        SET account = #{account}, password = #{password}, nickname = #{nickname},
+        gender = #{gender}, model_library = #{modelLibrary},avater=#{avater}
+        WHERE userId = #{userId}
+    </update>
+
+    <!-- 根据用户ID删除用户 -->
+    <delete id="deleteUserById" parameterType="java.lang.Long">
+        DELETE FROM user WHERE userId = #{userId}
+    </delete>
+    <!-- 根据账号查询用户 -->
+    <select id="getUserByAccount" resultType="com.aiart.server.entity.UserEntity">
+        SELECT * FROM user WHERE account = #{account}
+    </select>
+    <!-- 更新用户的昵称和性别根据 userId -->
+    <update id="updateUserInfo">
+        UPDATE user
+        SET nickname = #{newNickname}, gender = #{newGender}
+        WHERE userId = #{userId}
+    </update>
+</mapper>

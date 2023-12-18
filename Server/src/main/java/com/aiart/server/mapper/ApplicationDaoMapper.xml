@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ApplicationMapper.xml -->
+<mapper namespace="com.aiart.server.dao.ApplicationDao">
+    <!-- 插入应用 -->
+    <insert id="insertApplication" useGeneratedKeys = "true" keyProperty = "applicationId" parameterType="com.aiart.server.entity.ApplicationEntity">
+        INSERT INTO application (applicationName, publisher, applicationField, server_addr, server_port,server_url)
+        VALUES (#{applicationName}, #{publisher}, #{applicationField}, #{serverAddr}, #{serverPort},#{serverurl})
+    </insert>
+
+    <!-- 根据应用 ID 查询应用 -->
+    <select id="getApplicationById" resultType="com.aiart.server.entity.ApplicationEntity">
+        SELECT * FROM application WHERE applicationId = #{applicationId}
+    </select>
+
+    <!-- 更新应用信息 -->
+    <update id="updateApplication" parameterType="com.aiart.server.entity.ApplicationEntity">
+        UPDATE application
+        SET applicationName = #{applicationName}, publisher = #{publisher},
+        applicationField = #{applicationField}, server_addr = #{serverAddr}, server_port = #{serverPort},server_url=#{serverurl}
+        WHERE applicationId = #{applicationId}
+    </update>
+
+    <!-- 根据应用 ID 删除应用 -->
+    <delete id="deleteApplicationById" parameterType="java.lang.Long">
+        DELETE FROM application WHERE applicationId = #{applicationId}
+    </delete>
+    <!-- 定义 getUrlById 方法的 SQL 查询 -->
+    <select id="getUrlById" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT server_url
+        FROM application
+        WHERE applicationId = #{applicationId}
+    </select>
+</mapper>

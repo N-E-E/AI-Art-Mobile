@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- UserApplicationDaoMapper.xml -->
+
+<mapper namespace="com.aiart.server.dao.UserApplicationDao">
+
+    <!-- 插入用户与应用程序的关联关系 -->
+    <insert id="insertUserApplication"  useGeneratedKeys ="true"  keyProperty = "id" parameterType="com.aiart.server.entity.UserApplicationEntity">
+        INSERT INTO user_application (user_id, application_id)
+        VALUES (#{userId}, #{applicationId})
+    </insert>
+
+    <!-- 删除用户与应用程序的关联关系 -->
+    <delete id="deleteUserApplication" parameterType="map">
+        DELETE FROM user_application
+        WHERE user_id = #{userId} AND application_id = #{applicationId}
+    </delete>
+
+    <!-- 根据用户ID获取拥有的应用程序列表 -->
+    <select id="getApplicationsByUserId" parameterType="long" resultType="long">
+        SELECT application_id FROM user_application WHERE user_id = #{userId}
+    </select>
+
+    <!-- 根据应用程序ID获取拥有它的用户列表 -->
+    <select id="getUsersByApplicationId" parameterType="long" resultType="long">
+        SELECT user_id FROM user_application WHERE application_id = #{applicationId}
+    </select>
+
+</mapper>

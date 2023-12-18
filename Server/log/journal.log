@@ -1,0 +1,8 @@
+2023-10-20 14:50:53 [Test worker] INFO  c.a.server.controller.UserController - Login successful: testUser
+2023-10-20 14:50:53 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-10-20 14:50:53 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-10-20 15:08:00 [http-nio-8001-exec-6] INFO  c.a.server.controller.UserController - Login successful: 111
+2023-10-20 15:08:23 [http-nio-8001-exec-7] INFO  c.a.server.controller.UserController - Request Success!
+2023-10-20 15:09:31 [http-nio-8001-exec-9] INFO  c.a.server.controller.UserController - Request Success!
+2023-10-20 15:11:16 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-10-20 15:11:16 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
